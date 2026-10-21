@@ -34,7 +34,7 @@
   --accent: #2A35C9;
 
   --gutter: clamp(1.25rem, 6vw, 6rem);
-  --column: 68rem;
+  --column: 88rem;
   --display: "Newsreader", "Iowan Old Style", Georgia, serif;
   --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -151,12 +151,19 @@ main {
   background: var(--accent);
 }
 
+main {
+  container-type: inline-size;
+}
+
 .hero-title {
   max-width: 100%;
   margin: 0;
   color: var(--ink);
   font-family: var(--display);
-  font-size: clamp(2.6rem, 8vw, 6rem);
+  /* Fallback ohne Container-Queries */
+  font-size: clamp(1.55rem, 8.3vw, 8rem);
+  /* skaliert mit der Spaltenbreite: Wort bleibt immer in einer Zeile */
+  font-size: clamp(1.55rem, 8.6cqw, 9rem);
   font-weight: 600;
   font-optical-sizing: auto;
   letter-spacing: -0.035em;
@@ -285,11 +292,7 @@ main {
 
 /* Schmale Viewports */
 
-@media (max-width: 360px) {
-  .hero-title {
-    font-size: clamp(2.1rem, 10.5vw, 2.4rem);
-  }
-}
+
 
 /* Polish: Akzentlinie waechst, Headline schiebt minimal */
 .accent-line,
@@ -334,7 +337,9 @@ main {
 /* Mobil: Berufsbezeichnung in einer Zeile, kein Trennstrich */
 @media (max-width: 620px) {
   .hero-title {
-    font-size: clamp(1.7rem, 8.8vw, 2.35rem);
-    letter-spacing: -0.04em;
+    /* gross schlaegt einzeilig: 11.3vw, Umbruch am weichen Trennzeichen */
+    font-size: clamp(2.2rem, 11.3vw, 3.2rem);
+    letter-spacing: -0.042em;
+    line-height: 0.9;
   }
 }
