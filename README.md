@@ -9,7 +9,7 @@ Statische Portfolio-Seite für **peledev.de**. nginx (unprivileged) im Container
 - `nginx.conf` — Security-Header, CSP, Caching (`read_only` Rootfs)
 - `scripts/egress-lock.sh` — iptables-DROP aller neuen Egress-Verbindungen des Containers
 - `BRIEF.md` — Design-/Content-Spec (Quelle der Wahrheit für Änderungen)
-- `docker-compose.yml` — Container `peledev-site` (eigenes Bridge-Netz `isolated`, feste IP `10.99.250.2`)
+- `docker-compose.yml` — Container `peledev-site` (eigenes Bridge-Netz `isolated`, feste Container-IP im eigenen Subnetz)
 
 ## Betrieb
 ```
@@ -30,9 +30,9 @@ Eine Seite, ein Satz: `Fachinformatiker Anwendungsentwicklung` als H1, Wortmarke
 - `site/datenschutz.html`: Verantwortlicher ist mit Vornamen `Pele` + GitHub-Kontakt angegeben. Bei beruflicher Nutzung: vollständiger Name + Impressum nachrüsten.
 
 ## Cloudflare
-- Zone `peledev.de`, account `ACCOUNT-ID-ENTFERNT`, status `active`
+- Zone `peledev.de` in Cloudflare, Status `active` (Account- und Tunnel-IDs sind bewusst nicht im Repo)
 - NS bei Netcup: `owen.ns.cloudflare.com`, `wally.ns.cloudflare.com` (Glue-Felder leer)
-- Tunnel `peledev` (`TUNNEL-ID-ENTFERNT`): `peledev.de` + `www.peledev.de` → `http://localhost:3016`, Catch-all `http_status:404`
+- Tunnel `peledev`: `peledev.de` + `www.peledev.de` → `http://localhost:3016`, Catch-all `http_status:404`
 - DNS: proxied CNAMEs auf `<tunnel>.cfargotunnel.com`
 - Container `cloudflared-tunnel` in `~/docker/cloudflare-tunnel/` (Token in `tunnel.env`, `network_mode: host`)
 
