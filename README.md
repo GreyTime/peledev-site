@@ -49,3 +49,10 @@ Eine Seite, ein Satz: `Fachinformatiker Anwendungsentwicklung` als H1, Wortmarke
 
 ## Bekannte Stolperfalle
 Der Pi selbst löst `peledev.de` über Tailscale-MagicDNS → FritzBox auf und hält die alte netcup-Park-IP bis TTL-Ende (24 h). LAN-Clients und `dig @127.0.0.1` (AdGuard) sind korrekt. Prüfen mit `curl --resolve peledev.de:443:<cf-ip>`.
+
+## Polish (v5)
+- `og.png` (1200x630, lokal gerendert) + `og:image`/`twitter:card` → saubere Link-Previews
+- `favicon.svg` = „P" aus Newsreader als Pfad, Ink-Quadrat; `og-icon.png` 180x180 als Apple-Touch-Icon
+- Hover: Akzentlinie 56 → 96 px, Headline schiebt 2 px (`transition`), `prefers-reduced-motion` aus
+- Mobil <620 px: Headline skaliert, „Anwendungsentwicklung" bleibt in einer Zeile (kein Trennstrich)
+- echte `404.html` (`error_page 404 /404.html`), im gleichen Raster

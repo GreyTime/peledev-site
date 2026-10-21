@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="peledev.de">
-  <rect width="64" height="64" fill="#2A35C9"/>
-  <path fill="#EDEEEA" fill-rule="evenodd" d="M23 15h13a11 11 0 0 1 0 22h-7v12h-6V15Zm6 6h7a5 5 0 0 1 0 10h-7V21Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pele">
+  <rect width="64" height="64" rx="10" fill="#14171A"/>
+  <g transform="translate(17.26 50.00) scale(0.02500)">
+    <path d="M961 -962Q961 -1053 921.5 -1116.5Q882 -1180 791.5 -1213.0Q701 -1246 546 -1246H254L267 -1340H632Q811 -1340 920.5 -1291.5Q1030 -1243 1080.5 -1160.0Q1131 -1077 1131 -974Q1131 -868 1079.0 -779.0Q1027 -690 917.0 -636.5Q807 -583 632 -583H267L254 -677H657Q744 -677 812.5 -709.5Q881 -742 921.0 -805.5Q961 -869 961 -962ZM403 -1340V-91L561 -39V0H85V-39L243 -91V-1249L85 -1301V-1340Z" fill="#EDEEEA"/>
+  </g>
 </svg>
