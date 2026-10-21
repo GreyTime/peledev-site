@@ -28,8 +28,11 @@
     var btn = document.querySelector("[data-theme-toggle]");
     if (!btn) return;
     var now = effective();
-    var next = now === "dark" ? "Hell" : "Dunkel";
-    btn.textContent = next;
+    var next = now === "dark" ? "light" : "dark";
+    // data-target steuert Icon und Label: Mond = "Dunkel", Sonne = "Hell".
+    btn.dataset.target = next;
+    var label = btn.querySelector(".theme-toggle-label");
+    if (label) label.textContent = next === "dark" ? "Dunkel" : "Hell";
     btn.setAttribute("aria-label", "Farbschema wechseln (aktuell " + now + ")");
     btn.setAttribute("aria-pressed", now === "dark" ? "true" : "false");
   }

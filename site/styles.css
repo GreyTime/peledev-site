@@ -191,11 +191,45 @@ main {
 
 .header-right {
   display: flex;
-  align-items: baseline;
-  gap: 1.25rem;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  /* Der Unterstrich sitzt am Label, nicht unter dem Icon. */
+  text-decoration: none;
+}
+
+.header-link svg,
+.theme-toggle svg {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  font-size: 1rem;
+}
+
+.header-link-label,
+.theme-toggle-label {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.header-link-label {
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+}
+
+.header-link:hover .header-link-label {
+  text-decoration-color: currentColor;
 }
 
 .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0;
   border: 0;
   background: none;
@@ -203,20 +237,36 @@ main {
   font: inherit;
   font-size: 0.9375rem;
   cursor: pointer;
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+}
+
+.theme-toggle-label {
   text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
 }
 
 .theme-toggle:hover {
   color: var(--accent);
+}
+
+.theme-toggle:hover .theme-toggle-label {
   text-decoration-color: currentColor;
 }
 
 .theme-toggle:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+/* Das Icon zeigt das Ziel: Mond = "Dunkel", Sonne = "Hell". */
+.theme-icon-sun {
+  display: none;
+}
+
+.theme-toggle[data-target="light"] .theme-icon-sun {
+  display: block;
+}
+
+.theme-toggle[data-target="light"] .theme-icon-moon {
+  display: none;
 }
 
 /* Aktuell */
@@ -385,7 +435,20 @@ main {
 
 /* Schmale Viewports */
 
-
+/* Social-Links zeigen nur das Icon; das Label bleibt fuer Screenreader im DOM. */
+@media (max-width: 30rem) {
+  .header-link-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}
 
 /* Polish: Akzentlinie waechst, Headline schiebt minimal */
 .accent-line,
