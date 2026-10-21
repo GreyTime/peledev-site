@@ -219,6 +219,129 @@ main {
   outline-offset: 3px;
 }
 
+/* Stack */
+
+.stack {
+  padding-block: clamp(1.75rem, 4vw, 2.75rem) clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--rule);
+}
+
+.stack-title {
+  margin: 0 0 clamp(1rem, 2vw, 1.35rem);
+  color: var(--muted);
+  font-family: var(--display);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.stack-title--flow {
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.stack-list {
+  margin: 0;
+}
+
+.stack-row {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 11rem) 1fr;
+  gap: 0.35rem 1.5rem;
+  padding-block: 0.7rem;
+  border-top: 1px solid var(--rule);
+}
+
+.stack-row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.stack-row dt {
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.stack-row dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+/* Workflow-Rail */
+
+.flow {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 3px;
+  height: 1px;
+  background: var(--rule);
+}
+
+.flow li {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.flow li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  box-shadow: 0 0 0 4px var(--paper);
+  position: relative;
+  z-index: 1;
+}
+
+.flow li:first-child::before {
+  background: var(--accent);
+}
+
+.flow li:last-child {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 720px) {
+  .flow {
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .flow::before {
+    left: 3px;
+    right: auto;
+    top: 3px;
+    bottom: 3px;
+    width: 1px;
+    height: auto;
+  }
+
+  .flow li {
+    flex: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
 /* Aktuell */
 
 .current {
