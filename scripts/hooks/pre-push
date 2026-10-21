@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Blockiert Push, wenn öffentliche Repo-Regeln verletzt sind.
+exec "$(git rev-parse --show-toplevel)/scripts/check-public.sh"

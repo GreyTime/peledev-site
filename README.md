@@ -22,8 +22,10 @@ Content-Änderung: Datei in `site/` editieren, kein Restart nötig (Mount, Cache
 
 Egress-Lock ist als `peledev-egress-lock.service` (systemd oneshot, enabled) beim Boot verdrahtet.
 
-## Inhalt (Stand v3)
-Eine Seite, ein Satz: `Fachinformatiker Anwendungsentwicklung` als H1, Wortmarke `peledev.de`, GitHub-Link, Footer-Link `Datenschutz`. Kein Impressum (rein private Seite), keine Mailadresse, keine Projektliste — bewusst so.
+## Inhalt
+Eine Seite: `Fachinformatiker Anwendungsentwicklung` als H1, Wortmarke `Pele`, GitHub-Link, darunter ein Block `Ausbildung · dmTECH · Intralogistik / Abschluss 2027` mit Logo, Footer `peledev.de` + `Datenschutz`. Kein Impressum (rein private Seite), keine Mailadresse, keine Projektliste — bewusst so.
+
+Farbschema: Systemeinstellung als Default, manueller Umschalter (`site/theme.js`, Wahl in `localStorage`). Keine externen Requests, keine Analytics.
 
 ## Offen
 - `site/datenschutz.html`: Verantwortlicher ist mit Vornamen `Pele` + GitHub-Kontakt angegeben. Bei beruflicher Nutzung: vollständiger Name + Impressum nachrüsten.
@@ -35,11 +37,11 @@ Eine Seite, ein Satz: `Fachinformatiker Anwendungsentwicklung` als H1, Wortmarke
 - DNS: proxied CNAMEs auf `<tunnel>.cfargotunnel.com`
 - Container `cloudflared-tunnel` in `~/docker/cloudflare-tunnel/` (Token in `tunnel.env`, `network_mode: host`)
 
-**Noch offen (Token ohne `Zone Settings: Edit` → 403):** SSL/TLS Full (strict), Always Use HTTPS, HSTS, Min TLS 1.2, WAF Managed Rules. Im Dashboard setzen oder Token erweitern.
+Gesetzt (im Dashboard, weil der DNS-Token `Zone Settings: Edit` nicht hatte): SSL/TLS Full (strict), Always Use HTTPS, HSTS, Min TLS 1.2, Managed Ruleset. Verifiziert: HTTP → 301, HSTS-Header, TLS 1.1 abgelehnt.
 
 ## Sicherheit
 - Kein offener Port: cloudflared verbindet ausgehend (QUIC/443), Ingress nur 2 Hostnames
-- CSP `default-src 'none'`, kein JS, keine externen Requests
+- CSP `default-src 'none'` + `script-src 'self'` (nur eigenes `theme.js`), keine externen Requests
 - `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`
 - Container: `read_only`, `cap_drop: ALL`, `no-new-privileges`, `pids_limit: 64`, non-root
 - Egress-Lock: Container erreicht kein LAN und kein Internet (`EXT-BLOCKED`, `LAN-BLOCKED` verifiziert)
@@ -55,3 +57,11 @@ Der Pi selbst löst `peledev.de` über Tailscale-MagicDNS → FritzBox auf und h
 - Hover: Akzentlinie 56 → 96 px, Headline schiebt 2 px (`transition`), `prefers-reduced-motion` aus
 - Mobil <620 px: Headline skaliert, „Anwendungsentwicklung" bleibt in einer Zeile (kein Trennstrich)
 - echte `404.html` (`error_page 404 /404.html`), im gleichen Raster
+
+## Öffentliches Repo
+Das Repo `GreyTime/peledev-site` ist **public**, die Seite ist es auch. Regel: nichts hinein, was nicht auf eine öffentliche Visitenkarte gehört.
+
+- Nicht ins Repo: `.env`, Tokens, Cloudflare-Account-/Zone-/Tunnel-IDs, interne Notizen (liegen lokal in `_notes/`, per `.gitignore` ausgeschlossen), Backup-Repos, Host-Pfade mit Zugangsdaten.
+- `scripts/check-public.sh` prüft Dateiliste, Inhalte und **Historie** auf Secrets und IDs.
+- `scripts/hooks/pre-push` ruft das automatisch auf (`git config core.hooksPath scripts/hooks`); bei einem Fund bricht der Push ab.
+- Beispiel: `./scripts/check-public.sh` → `check-public: sauber`.
