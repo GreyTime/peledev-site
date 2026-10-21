@@ -17,5 +17,17 @@ services:
       - ALL
     security_opt:
       - no-new-privileges:true
-    mem_limit: 64m
     pids_limit: 64
+    networks:
+      isolated:
+        ipv4_address: 10.99.250.2
+
+networks:
+  # Eigenes Bridge-Netz mit fester IP. Egress wird per iptables DOCKER-USER
+  # geblockt (scripts/egress-lock.sh) — ein kompromittierter nginx kommt so
+  # weder ins LAN noch ins Internet. Inbound via published port bleibt.
+  isolated:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.99.250.0/24
