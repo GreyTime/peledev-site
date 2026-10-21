@@ -40,13 +40,32 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #101314;
     --ink: #EDEEEA;
     --muted: #9AA1A6;
     --rule: #2B3134;
     --accent: #9AA4FF;
   }
+}
+
+/* Manuelle Wahl schlaegt die Systemeinstellung */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #101314;
+  --ink: #EDEEEA;
+  --muted: #9AA1A6;
+  --rule: #2B3134;
+  --accent: #9AA4FF;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --paper: #EDEEEA;
+  --ink: #14171A;
+  --muted: #5C6469;
+  --rule: #C9CCC6;
+  --accent: #2A35C9;
 }
 
 *,
@@ -168,6 +187,36 @@ main {
   font-optical-sizing: auto;
   letter-spacing: -0.035em;
   line-height: 0.95;
+}
+
+.header-right {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+
+.theme-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 /* Aktuell */
