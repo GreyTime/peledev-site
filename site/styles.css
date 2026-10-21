@@ -1,4 +1,4 @@
-/* peledev.de — eine Spalte, Typografie, keine Abhängigkeiten */
+/* peledev.de — Wortmarke, ein Satz, ein Link. Die Typografie ist das Design. */
 
 @font-face {
   font-family: "Newsreader";
@@ -33,8 +33,8 @@
   --rule: #C9CCC6;
   --accent: #2A35C9;
 
-  --measure: 66ch;
   --gutter: clamp(1.25rem, 6vw, 6rem);
+  --column: 68rem;
   --display: "Newsreader", "Iowan Old Style", Georgia, serif;
   --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -60,14 +60,17 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
   margin: 0;
   padding-inline: var(--gutter);
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.5;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -76,20 +79,6 @@ body {
 ::selection {
   background: var(--ink);
   color: var(--paper);
-}
-
-h1,
-h2,
-h3 {
-  margin: 0;
-  font-family: var(--display);
-  font-weight: 400;
-  font-optical-sizing: auto;
-  letter-spacing: -0.02em;
-}
-
-p {
-  margin: 0;
 }
 
 a {
@@ -108,14 +97,13 @@ a:hover {
 a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  color: var(--accent);
 }
 
 .site-header,
 main,
 .site-footer {
   width: 100%;
-  max-width: 68rem;
+  max-width: var(--column);
   margin-inline: auto;
 }
 
@@ -129,146 +117,60 @@ main,
   gap: 0.5rem 1.5rem;
   padding-block: clamp(1.5rem, 3vw, 2rem) clamp(0.85rem, 1.6vw, 1.1rem);
   border-bottom: 1px solid var(--rule);
+  font-size: 0.9375rem;
+  font-weight: 500;
 }
 
 .wordmark {
   color: var(--ink);
-  font-size: 0.9375rem;
-  font-weight: 500;
   letter-spacing: 0.01em;
   text-decoration: none;
 }
 
-.header-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
+.wordmark:hover {
+  color: var(--accent);
 }
 
 /* Hero */
 
+main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 .hero {
-  padding-block: clamp(3.5rem, 11vh, 7rem) 0;
+  margin-block: auto;
+  padding-block: clamp(2.5rem, 8vh, 5rem);
+}
+
+.accent-line {
+  width: 56px;
+  height: 4px;
+  margin-bottom: 1.75rem;
+  background: var(--accent);
 }
 
 .hero-title {
-  max-width: 24ch;
-  font-size: clamp(2.1rem, 5vw, 3.4rem);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-}
-
-.hero-lede {
-  max-width: 58ch;
-  margin-top: clamp(1.5rem, 3vw, 2.25rem);
-  color: var(--muted);
-  font-size: clamp(1.125rem, 1.5vw, 1.1875rem);
-  line-height: 1.6;
-  text-wrap: pretty;
-}
-
-/* Abschnitte */
-
-.section {
-  margin-top: clamp(3.5rem, 8vw, 6rem);
-  scroll-margin-top: 2rem;
-}
-
-.section-label {
-  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
-  color: var(--muted);
-  font-family: var(--display);
-  font-size: 1.05rem;
-  font-style: italic;
-  font-weight: 350;
-  letter-spacing: 0;
-  line-height: 1.2;
-}
-
-/* Schwerpunkte */
-
-.focus {
+  max-width: 100%;
   margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.focus-item {
-  padding-block: clamp(1.15rem, 2.2vw, 1.5rem);
-}
-
-.focus-item:first-child {
-  padding-top: 0;
-}
-
-.focus-item:last-child {
-  padding-bottom: 0;
-}
-
-.focus-item + .focus-item {
-  border-top: 1px solid var(--rule);
-}
-
-.focus-title {
-  font-size: 1.35rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
-.focus-text {
-  max-width: 60ch;
-  margin-top: 0.35rem;
-  color: var(--muted);
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  text-wrap: pretty;
-}
-
-/* Stack */
-
-.stack {
-  max-width: 68ch;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.7;
-  font-variant-numeric: tabular-nums;
-  text-wrap: pretty;
-}
-
-/* Kontakt */
-
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.75rem;
-  font-size: 1.0625rem;
-  line-height: 1.6;
-}
-
-.sep {
-  color: var(--muted);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 8vw, 6rem);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
 }
 
 /* Footer */
 
 .site-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem 2rem;
-  margin-top: clamp(4rem, 10vw, 7.5rem);
-  padding-block: clamp(1.5rem, 3.5vw, 2.25rem);
+  padding-block: clamp(1.35rem, 3vw, 2rem);
   border-top: 1px solid var(--rule);
   color: var(--muted);
   font-size: 0.875rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
-  font-variant-numeric: tabular-nums;
 }
 
 .site-footer a {
@@ -280,21 +182,32 @@ main,
   color: var(--accent);
 }
 
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+/* Datenschutz */
+
+.legal {
+  padding-block: clamp(2.5rem, 7vw, 4.5rem) 0;
 }
 
-/* Fließtext */
+.legal-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  font-weight: 500;
+  font-optical-sizing: auto;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
 
 .prose {
-  max-width: var(--measure);
-  font-size: clamp(1.0625rem, 1.4vw, 1.125rem);
+  max-width: 62ch;
+  margin-top: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1rem, 1.2vw, 1.0625rem);
 }
 
 .prose p {
-  line-height: 1.6;
+  color: var(--muted);
+  line-height: 1.65;
   text-wrap: pretty;
 }
 
@@ -302,65 +215,28 @@ main,
   margin-top: 1.15em;
 }
 
-.prose a {
-  text-decoration-color: currentColor;
-}
-
-/* Impressum */
-
-.legal-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
-}
-
-.legal {
-  width: 100%;
-  max-width: 68rem;
-  margin-inline: auto;
-  flex: 1;
-  padding-block: clamp(2.5rem, 7vw, 5rem) 0;
-}
-
-.legal-title {
-  font-size: clamp(2.25rem, 6vw, 3.25rem);
-  font-weight: 350;
-  line-height: 1.05;
-}
-
-.legal-prose {
-  margin-top: clamp(2rem, 5vw, 3rem);
-}
-
-.legal-prose p {
-  color: var(--muted);
-}
-
-.legal-prose a {
+.prose h2 {
+  margin: clamp(2rem, 4vw, 2.75rem) 0 0.5rem;
   color: var(--ink);
-}
-
-.legal-prose h2 {
   font-family: var(--display);
-  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  color: var(--ink);
-  margin-top: clamp(2rem, 4vw, 2.75rem);
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
-.legal-prose h2:first-child {
+.prose h2:first-child {
   margin-top: 0;
 }
 
-.legal-prose code {
-  font-size: 0.9em;
+.prose a {
   color: var(--ink);
+  text-decoration-color: currentColor;
 }
 
-.legal-page .site-footer {
-  margin-top: clamp(4rem, 10vw, 7rem);
+.prose a:hover,
+.prose a:focus-visible {
+  color: var(--accent);
 }
 
 /* Bewegung: ein gestaffelter Auftritt, sonst nichts */
@@ -377,46 +253,31 @@ main,
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-title,
-  .hero-lede,
-  .contact-links {
+  .accent-line,
+  .hero-title {
     animation: rise 500ms ease-out both;
   }
 
-  .hero-title {
+  .accent-line {
     animation-delay: 0ms;
   }
 
-  .hero-lede {
+  .hero-title {
     animation-delay: 60ms;
-  }
-
-  .contact-links {
-    animation-delay: 120ms;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-title,
-  .hero-lede,
-  .contact-links {
+  .accent-line,
+  .hero-title {
     animation: none;
   }
 }
 
 /* Schmale Viewports */
 
-@media (max-width: 640px) {
+@media (max-width: 360px) {
   .hero-title {
-    max-width: 100%;
-  }
-
-  .contact-links {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .contact-links .sep {
-    display: none;
+    font-size: clamp(2.1rem, 10.5vw, 2.4rem);
   }
 }

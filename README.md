@@ -23,9 +23,11 @@ Content-Änderung: Datei in `site/` editieren, kein Restart nötig (Mount, Cache
 
 Egress-Lock ist als `peledev-egress-lock.service` (systemd oneshot, enabled) beim Boot verdrahtet.
 
-## Offene Platzhalter
-- `site/impressum.html`: `[Name]`, `[Straße, Nr.]`, `[PLZ Ort]` füllen (Pflicht in DE).
-- Mailadresse `hello@peledev.de` muss als Postfach/Alias existieren.
+## Inhalt (Stand v3)
+Eine Seite, ein Satz: `Fachinformatiker Anwendungsentwicklung` als H1, Wortmarke `peledev.de`, GitHub-Link, Footer-Link `Datenschutz`. Kein Impressum (rein private Seite), keine Mailadresse, keine Projektliste — bewusst so.
+
+## Offen
+- `site/datenschutz.html`: Verantwortlicher ist mit Vornamen `Pele` + GitHub-Kontakt angegeben. Bei beruflicher Nutzung: vollständiger Name + Impressum nachrüsten.
 
 ## Cloudflare
 - Zone `peledev.de`, account `ACCOUNT-ID-ENTFERNT`, status `active`
@@ -42,6 +44,7 @@ Egress-Lock ist als `peledev-egress-lock.service` (systemd oneshot, enabled) bei
 - `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`
 - Container: `read_only`, `cap_drop: ALL`, `no-new-privileges`, `pids_limit: 64`, non-root
 - Egress-Lock: Container erreicht kein LAN und kein Internet (`EXT-BLOCKED`, `LAN-BLOCKED` verifiziert)
+- Origin-Bremse in nginx: `limit_req` 20 r/s (burst 40) und `limit_conn` 20 pro echter Client-IP, Status 429; echte IP kommt aus `CF-Connecting-IP` (nur von 127.0.0.1 vertraut). Test: 60 schnelle Requests → 11x 429.
 - Hinweis: `mem_limit` greift auf diesem Kernel nicht (kein Memory-Cgroup-Controller aktiv).
 
 ## Bekannte Stolperfalle
