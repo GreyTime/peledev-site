@@ -8,7 +8,6 @@ Statische Portfolio-Seite für **peledev.de**. nginx (unprivileged) im Container
 - `site/` — HTML/CSS/Fonts (read-only gemountet)
 - `nginx.conf` — Security-Header, CSP, Caching (`read_only` Rootfs)
 - `scripts/egress-lock.sh` — iptables-DROP aller neuen Egress-Verbindungen des Containers
-- `BRIEF.md` — Design-/Content-Spec (Quelle der Wahrheit für Änderungen)
 - `docker-compose.yml` — Container `peledev-site` (eigenes Bridge-Netz `isolated`, feste Container-IP im eigenen Subnetz)
 
 ## Betrieb
