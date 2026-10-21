@@ -3,89 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pele — peledev.de</title>
-  <meta name="description" content="Ich baue Software, die auf eigener Hardware läuft — Anwendungen, die ich täglich selbst benutze.">
+  <title>peledev.de — Anwendungsentwicklung und Betrieb</title>
+  <meta name="description" content="Anwendungsentwicklung und Betrieb: Software mit klaren Datenwegen, wenig Abhängigkeiten, Betrieb inklusive.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/Newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/PublicSans-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-title">
-      <h1 class="hero-name">Pele</h1>
-      <p class="hero-handle">peledev.de</p>
-    </div>
-
-    <p class="hero-lede">Ich baue Software, die auf eigener Hardware läuft — Anwendungen, die ich täglich selbst benutze.</p>
-
-    <nav class="hero-links" aria-label="Kontakt">
+  <header class="site-header">
+    <a class="wordmark" href="index.html">peledev.de</a>
+    <nav class="header-links" aria-label="Kontakt">
       <a href="https://github.com/GreyTime">GitHub</a>
       <a href="mailto:hello@peledev.de">Mail</a>
     </nav>
   </header>
 
   <main>
-    <section class="section" id="projekte" aria-labelledby="arbeit-label">
-      <h2 class="section-label" id="arbeit-label">arbeit</h2>
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 class="hero-title" id="hero-title">Ich entwickle Software und betreibe sie selbst.</h1>
+      <p class="hero-lede">Anwendungsentwicklung mit Fokus auf Dinge, die im Alltag funktionieren müssen: klare Datenwege, wenig Abhängigkeiten, Betrieb inklusive.</p>
+    </section>
 
-      <ul class="work">
-        <li class="work-item">
-          <div class="work-main">
-            <h3 class="work-name">Orbital Grid</h3>
-            <p class="work-desc">Hub, der Dienste im Homelab bündelt und read-only Status zeigt.</p>
-          </div>
-          <p class="work-meta"><span class="work-stack">Node, Docker, REST</span><span class="work-sep" aria-hidden="true">·</span><span class="work-year">2026</span></p>
+    <section class="section" id="schwerpunkte" aria-labelledby="schwerpunkte-label">
+      <h2 class="section-label" id="schwerpunkte-label">schwerpunkte</h2>
+
+      <ul class="focus">
+        <li class="focus-item">
+          <h3 class="focus-title">Anwendungsentwicklung</h3>
+          <p class="focus-text">Frontend und Backend mit TypeScript und Node, Datenhaltung mit SQLite und PostgreSQL.</p>
         </li>
-
-        <li class="work-item">
-          <div class="work-main">
-            <h3 class="work-name">Running Dashboard</h3>
-            <p class="work-desc">Trainingsdaten aus Garmin lokal ausgewertet und als PWA verfügbar.</p>
-          </div>
-          <p class="work-meta"><span class="work-stack">TypeScript, SQLite, Preact</span><span class="work-sep" aria-hidden="true">·</span><span class="work-year">2026</span></p>
+        <li class="focus-item">
+          <h3 class="focus-title">Betrieb</h3>
+          <p class="focus-text">Docker und Linux auf eigener Hardware: Reverse Proxy, Backups, Monitoring, Updates.</p>
         </li>
-
-        <li class="work-item">
-          <div class="work-main">
-            <h3 class="work-name">Game Tracker</h3>
-            <p class="work-desc">Steam-Bibliothek mit Wunschliste und Preisen, lokal gehostet.</p>
-          </div>
-          <p class="work-meta"><span class="work-stack">Node, Steam API</span><span class="work-sep" aria-hidden="true">·</span><span class="work-year">2025</span></p>
-        </li>
-
-        <li class="work-item">
-          <div class="work-main">
-            <h3 class="work-name">Nyx Home</h3>
-            <p class="work-desc">Klima- und Raumkontrolle für Zuhause, eine Oberfläche statt fünf Apps.</p>
-          </div>
-          <p class="work-meta"><span class="work-stack">Node, Home Assistant API</span><span class="work-sep" aria-hidden="true">·</span><span class="work-year">2026</span></p>
-        </li>
-
-        <li class="work-item">
-          <div class="work-main">
-            <h3 class="work-name">Muscle Up Quest</h3>
-            <p class="work-desc">Trainingsplan als Spiel: Progression, Quests, Fortschritt.</p>
-          </div>
-          <p class="work-meta"><span class="work-stack">Node, PWA</span><span class="work-sep" aria-hidden="true">·</span><span class="work-year">2025</span></p>
+        <li class="focus-item">
+          <h3 class="focus-title">Automatisierung</h3>
+          <p class="focus-text">Kleine Dienste und Skripte, die wiederkehrende Arbeit übernehmen — Python, Cron, APIs.</p>
         </li>
       </ul>
     </section>
 
-    <section class="section" id="ueber" aria-labelledby="ueber-label">
-      <h2 class="section-label" id="ueber-label">über</h2>
+    <section class="section" id="stack" aria-label="Stack">
+      <p class="stack">TypeScript · Node.js · Python · SQLite · PostgreSQL · Docker · Linux · Cloudflare</p>
+    </section>
 
-      <div class="prose">
-        <p>Fachinformatiker für Anwendungsentwicklung. Ich lerne am liebsten, indem ich etwas baue, das ich danach wirklich brauche.</p>
-        <p>Das Homelab läuft auf einem Raspberry Pi 5: acht Dienste, eigene Backups, Zugriff nur über verschlüsselte Tunnel. Wenn etwas ausfällt, will ich wissen warum.</p>
-        <p>Ich mag kleine, robuste Lösungen. Weniger Abhängigkeiten, klare Datenwege, Oberflächen, die man ohne Erklärung bedient.</p>
-      </div>
+    <section class="section" id="kontakt" aria-labelledby="kontakt-label">
+      <h2 class="section-label" id="kontakt-label">kontakt</h2>
+
+      <p class="contact-links">
+        <a href="mailto:hello@peledev.de">hello@peledev.de</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://github.com/GreyTime">github.com/GreyTime</a>
+      </p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <a href="mailto:hello@peledev.de">hello@peledev.de</a>
-    <a href="impressum.html">Impressum</a>
+    <span>peledev.de</span>
+    <span class="footer-links">
+      <a href="datenschutz.html">Datenschutz</a>
+    </span>
   </footer>
 </body>
 </html>
